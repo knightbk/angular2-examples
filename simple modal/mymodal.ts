@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core'
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: "mymodal",
@@ -6,8 +6,8 @@ import {Component, Input} from '@angular/core'
 })
 
 export class MyModal {
-    @Input()
-    public visible: boolean;
+    @Input() public visible: boolean;
+    @Output() notify: EventEmitter<string> = new EventEmitter<string>();
     constructor(
     ) { }
 
@@ -16,5 +16,8 @@ export class MyModal {
     }
     hide(){
         this.visible = false;
+    }
+    close(){
+        this.notify.emit('done');
     }
 }
